@@ -1,4 +1,3 @@
-import classnames from "classnames";
 import {
   useCallback,
   useEffect,
@@ -28,7 +27,7 @@ function Carousel({ children }) {
   useEffect(() => {
     window.addEventListener("resize", callback);
     return () => window.removeEventListener("resize", callback);
-  }, []);
+  }, [callback]);
 
   const onBack = () => {
     setPosition((prevPosition) => {

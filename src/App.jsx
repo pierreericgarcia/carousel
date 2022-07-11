@@ -18,7 +18,7 @@ const GET_PROGRAMS = gql`
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(GET_PROGRAMS);
+  const { loading, data } = useQuery(GET_PROGRAMS);
 
   return (
     <CenterContent>
