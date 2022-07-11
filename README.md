@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# TF1 Carousel Exercise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is a carousel written from scratch in React for TF1.
 
-## Available Scripts
+## How I designed the `Carousel` API ?
 
-In the project directory, you can run:
+The first question I asked myself was : what would the `Carousel` API look like ? As this component is intended to be used across a variety of applications.
 
-### `npm start`
+So I decided to make it simple and reusable. In fact the `Carousel` component is only responsible of the navigation feature. It renders his children plainly and display navigation buttons to make them slide.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```jsx
+<Carousel>
+  <Element />
+  <Element />
+  <Element />
+</Carousel>
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This way, the `Carousel` component is easy to use, and you can give it any custom component as children.
 
-### `npm test`
+## What can be improved ?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+As requested, I collected errors and ideas for improvement that could be used to improve the exercise.
 
-### `npm run build`
+#### Some images are no longer available
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Some image urls are no longer available which causes display problems. We have to fix the urls and think of a way to handle these errors in the UI.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Exercise specifications are vague
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I know it's only a test and it needs to be done quickly. But in a real-world situation the specifications would not be detailed enough. This is problematic because the developer has to infer certain behaviors and it can lead to a disagreement with the product team. This is true for :
 
-### `npm run eject`
+- The navigation of the carousel (where does the next and back button take you ?)
+- The loading case (when the data aren't fetch yet)
+- How responsive is managed
+- What happen if we click on a program ?
+- What happen if we click on the "+" button ?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### We need a `slug` property for routing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This component is designed to help the user choose a program. So when a user clicks on a program he expects to be redirected to the details page of the latter. But looking at the GraphQL schema, no properties seem to be assigned to this routing task.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `id` can be used but it is not SEO friendly at all
+- `name` is not formatted to be used as a URL
